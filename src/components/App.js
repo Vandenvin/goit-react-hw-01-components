@@ -2,6 +2,8 @@ import { Profile } from './Profile/Profile';
 import user from '../user.json';
 import { Statistics } from './Statistics/Statistics';
 import data from '../data.json';
+import { FriendList } from './FriendList/FriendList';
+import friends from '../friends.json';
 import css from './App.module.css';
 
 export const App = () => {
@@ -16,11 +18,10 @@ export const App = () => {
           avatar={user.avatar}
           stats={user.stats}
         />
-
         <h1>Task 2: Statistics Section</h1>
         <Statistics title="Upload stats" stats={data} />
-
         <h1>Task 3: Friend List</h1>
+        <FriendList friends={friends} />
       </div>
     </>
   );
