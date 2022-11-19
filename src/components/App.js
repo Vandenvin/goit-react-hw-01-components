@@ -11,29 +11,58 @@ import { TransactionHistory } from './TransactionHistory/TransactionHistory';
 import transactions from '../dataFiles/transactions.json';
 
 import { Container, Title } from './App.styled';
+import { Component } from 'react';
 
-export const App = () => {
-  return (
-    <>
-      <Container>
-        <Title>Task 1: Social network profile</Title>
-        <Profile
-          username={user.username}
-          tag={user.tag}
-          location={user.location}
-          avatar={user.avatar}
-          stats={user.stats}
-        />
+// export const App = () => {
+//   return (
+//     <>
+//       <Container>
+//         <Title>Task 1: Social network profile</Title>
+//         <Profile
+//           username={user.username}
+//           tag={user.tag}
+//           location={user.location}
+//           avatar={user.avatar}
+//           stats={user.stats}
+//         />
 
-        <Title>Task 2: Statistics Card</Title>
-        <Statistics title="Upload stats" stats={data} />
+//         <Title>Task 2: Statistics Card</Title>
+//         <Statistics title="Upload stats" stats={data} />
 
-        <Title>Task 3: Friends List</Title>
-        <FriendList friends={friends} />
+//         <Title>Task 3: Friends List</Title>
+//         <FriendList friends={friends} />
 
-        <Title>Task 4: Transaction History</Title>
-        <TransactionHistory items={transactions} />
-      </Container>
-    </>
-  );
-};
+//         <Title>Task 4: Transaction History</Title>
+//         <TransactionHistory items={transactions} />
+//       </Container>
+//     </>
+//   );
+// };
+
+export class App extends Component {
+  render() {
+    return (
+      <>
+        <Container>
+          <Title>Task 1: Social network profile</Title>
+          <Profile
+            username={user.username}
+            tag={user.tag}
+            location={user.location}
+            avatar={user.avatar}
+            stats={user.stats}
+          />
+
+          <Title>Task 2: Statistics Card</Title>
+          <Statistics title="Upload stats" stats={data} />
+
+          <Title>Task 3: Friends List</Title>
+          <FriendList friends={friends} />
+
+          <Title>Task 4: Transaction History</Title>
+          <TransactionHistory items={transactions} />
+        </Container>
+      </>
+    );
+  }
+}

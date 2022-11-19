@@ -1,30 +1,68 @@
 import PropTypes from 'prop-types';
-import { FriendListItem } from './FriendListItem'
-import { FriendsList } from './FriendList.styled'; 
+import { FriendListItem } from './FriendListItem';
+import { FriendsList, ControlButton } from './FriendList.styled';
+import { Component } from 'react';
 
+// export const FriendList = ({ friends }) => {
+//   return (
+//     <FriendsList>
+//       {friends.map(({ avatar, name, isOnline, id }) => (
+//         <FriendListItem
+//           avatar={avatar}
+//           name={name}
+//           isOnline={isOnline}
+//           key={id}
+//         />
+//       ))}
+//     </FriendsList>
+//   );
+// };
 
-export const FriendList = ({friends}) => { 
+export class FriendList extends Component {
+  state = {
+    visible: false,
+  };
+
+  toggle = () => {
+    this.setState(prevState => ({
+      visible: !prevState.visible,
+    }));
+  };
+
+  render() {
+    const { friends } = this.props;
+    const { visible } = this.state;
+
     return (
-        <FriendsList>
-            {friends.map(({ avatar, name, isOnline, id}) => (
-                <FriendListItem
-                    avatar={avatar}
-                    name={name}
-                    isOnline={isOnline}
-                    key={id}
-                />
+      <>
+        <ControlButton type="button" onClick={this.toggle}>
+          {visible ? 'Hide' : 'Show'}
+        </ControlButton>
+
+        {visible && (
+          <FriendsList>
+            {friends.map(({ avatar, name, isOnline, id }) => (
+              <FriendListItem
+                avatar={avatar}
+                name={name}
+                isOnline={isOnline}
+                key={id}
+              />
             ))}
-        </FriendsList>
-    )
+          </FriendsList>
+        )}
+      </>
+    );
+  }
 }
 
 FriendList.propTypes = {
-    friends: PropTypes.arrayOf(
-        PropTypes.shape({
-            id: PropTypes.number.isRequired,
-            avatar: PropTypes.string.isRequired,
-            name: PropTypes.string.isRequired,
-            isOnline: PropTypes.bool.isRequired,
-        }),
-    )
+  friends: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      avatar: PropTypes.string.isRequired,
+      name: PropTypes.string.isRequired,
+      isOnline: PropTypes.bool.isRequired,
+    }),
+  ),
 };
